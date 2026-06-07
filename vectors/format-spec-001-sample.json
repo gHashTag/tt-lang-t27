@@ -1,0 +1,20 @@
+{
+  "schema": "t27-format-spec/v0.1",
+  "ssot_commit": "d9b76c5",
+  "anchor_identity": "phi^2 + 1/phi^2 = 3",
+  "anchor_hash_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "formats": {
+    "GF16": {
+      "kind": "goldenfloat",
+      "bits": 16,
+      "sign_bits": 1,
+      "exponent_bits": 6,
+      "mantissa_bits": 9,
+      "bias": 31,
+      "encoding": "sign_magnitude_single_stage_normalised",
+      "decoded_value_formula": "(-1)^S * 2^(E - 31) * (1 + M / 2^9)",
+      "status": "PRIMARY, SIM-level",
+      "conformance_vectors": "gf16_conformance_v0.json"
+    }
+  }
+}
