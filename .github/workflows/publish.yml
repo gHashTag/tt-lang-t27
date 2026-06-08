@@ -16,6 +16,12 @@ on:
     branches: [main]
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Tag or ref to publish (for manual re-runs)"
+        required: false
+        default: "v0.2.0"
 
 jobs:
   build:
@@ -42,7 +48,9 @@ jobs:
 
   publish-pypi:
     name: Publish to PyPI
-    if: github.event_name == 'release' && github.event.action == 'published'
+    if: |
+      (github.event_name == 'release' && github.event.action == 'published') ||
+      github.event_name == 'workflow_dispatch'
     needs: build
     runs-on: ubuntu-latest
     environment:
