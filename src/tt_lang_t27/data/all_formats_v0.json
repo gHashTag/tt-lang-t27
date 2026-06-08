@@ -1,7 +1,7 @@
 {
   "ssot_source": "https://github.com/gHashTag/t27/blob/master/specs/numeric/formats_catalog.t27",
   "fetched_at": "2026-06-08",
-  "count": 83,
+  "count": 84,
   "clusters_summary": {
     "Ieee754Binary": 5,
     "Ieee754Decimal": 3,
@@ -374,6 +374,23 @@
       "use_case": "extreme quant",
       "gf_relation": "ally",
       "source": "Rouhani 2023"
+    },
+    {
+      "id": "nvfp4",
+      "name": "NVFP4",
+      "bits": "4",
+      "s": "1",
+      "e": "2",
+      "m": "1",
+      "bias": "1",
+      "phi_distance": "-1.0",
+      "storage": "u4_plus_e4m3_block16_plus_fp32_per_tensor",
+      "cluster": "Microscaling",
+      "status": "Experimental",
+      "standard": "NVIDIA Blackwell (vendor-specific)",
+      "use_case": "B200/RTX5090 inference; ~4.5 bits/value effective",
+      "gf_relation": "ally (descriptive, not normative)",
+      "source": "NVIDIA developer blog 2025-06-24; MR-GPTQ arXiv:2509.23202"
     },
     {
       "id": "nf4",
@@ -1429,5 +1446,6 @@
       "gf_relation": "ally",
       "source": "Gupta 2015 (ICML)"
     }
-  ]
+  ],
+  "format_count": 84
 }

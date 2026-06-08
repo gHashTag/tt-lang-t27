@@ -1,4 +1,4 @@
-"""tt_lang_t27.catalog -- access to the full 83-format SSOT catalog.
+"""tt_lang_t27.catalog -- access to the full 84-format SSOT catalog.
 
 The catalog is loaded from ``vectors/all_formats_v0.json``, shipped inside
 the wheel.  Its upstream source of truth is
@@ -10,7 +10,7 @@ the wheel.  Its upstream source of truth is
 This module exposes:
 
 - ``Format``       -- a frozen dataclass for one record.
-- ``CATALOG``      -- list of all 83 ``Format`` objects, in catalog order.
+- ``CATALOG``      -- list of all 84 ``Format`` objects, in catalog order.
 - ``ANCHOR``       -- the canonical anchor ``phi^2 + 1/phi^2 = 3 = L_2``.
 - ``by_id(id)``    -- look up a format by its id (e.g. ``"bfloat16"``).
 - ``by_cluster(c)``-- list all formats in a cluster (e.g. ``"GoldenFloat"``).

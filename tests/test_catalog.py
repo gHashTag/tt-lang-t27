@@ -1,4 +1,4 @@
-"""Tests for the 83-format SSOT catalog."""
+"""Tests for the 84-format SSOT catalog."""
 
 from __future__ import annotations
 
@@ -21,9 +21,9 @@ from tt_lang_t27.catalog import (
 )
 
 
-def test_catalog_loads_83_formats():
-    assert count() == 83
-    assert len(CATALOG) == 83
+def test_catalog_loads_84_formats():
+    assert count() == 84
+    assert len(CATALOG) == 84
     assert isinstance(CATALOG[0], Format)
 
 
@@ -35,14 +35,14 @@ def test_catalog_anchor_and_arxiv():
 
 
 def test_thirteen_clusters_with_expected_counts():
-    # The upstream catalog has 13 clusters, summing to 83 with
+    # The upstream catalog has 13 clusters, summing to 84 with
     # cluster counts CI-enforced upstream.
     expected = {
         "Ieee754Binary": 5,
         "Ieee754Decimal": 3,
         "ExtendedFloat": 3,
         "MlLowPrecision": 7,
-        "Microscaling": 3,
+        "Microscaling": 4,
         "QuantTuned": 2,
         "PositUnumIII": 8,
         "Lns": 4,
@@ -52,7 +52,7 @@ def test_thirteen_clusters_with_expected_counts():
         "Theoretical": 4,
         "CompressionTrick": 4,
     }
-    assert sum(expected.values()) == 83
+    assert sum(expected.values()) == 84  # 83 + NVFP4
     cl = clusters()
     assert len(cl) == 13
     assert set(cl) == set(expected)
@@ -153,7 +153,7 @@ def test_goldenfloat_ladder_has_all_rungs():
 def test_module_namespace_exposes_catalog():
     # Public re-exports from tt_lang_t27 top-level
     import tt_lang_t27 as m
-    assert m.catalog_count() == 83
+    assert m.catalog_count() == 84
     assert m.ANCHOR == ANCHOR
     assert isinstance(m.CATALOG, tuple)
     assert m.by_id("bfloat16").e_int == 8
