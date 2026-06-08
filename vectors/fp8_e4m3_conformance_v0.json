@@ -1,0 +1,235 @@
+{
+  "schema": "t27-conformance/v0.1",
+  "format": "FP8_E4M3",
+  "standard": "OCP FP8 v1.0 (https://opencompute.org)",
+  "layout": "S1E4M3 bias=7, no Inf, NaN at S.1111.111, saturate at +/-448",
+  "ssot": "https://github.com/gHashTag/t27/blob/master/conformance/FORMAT-SPEC-001.json",
+  "preprint": "https://arxiv.org/abs/2606.05017",
+  "anchor_identity": "phi^2 + 1/phi^2 = 3",
+  "anchor_check": {
+    "value": 3.0,
+    "expected": 3.0,
+    "fp8_bits": "0x44",
+    "exact_in_e4m3": true
+  },
+  "rounding_mode": "round-to-nearest-even",
+  "saturation": true,
+  "max_finite": 448.0,
+  "n_vectors": 16,
+  "vectors": [
+    {
+      "name": "pos_zero",
+      "input_f32": 0.0,
+      "input_f32_hex": "0x00000000",
+      "fp8_bits_hex": "0x00",
+      "fp8_bits_int": 0,
+      "decoded_f32": 0.0,
+      "abs_error": 0.0,
+      "category": "zero",
+      "notes": "+0"
+    },
+    {
+      "name": "neg_zero",
+      "input_f32": -0.0,
+      "input_f32_hex": "0x80000000",
+      "fp8_bits_hex": "0x80",
+      "fp8_bits_int": 128,
+      "decoded_f32": -0.0,
+      "abs_error": 0.0,
+      "category": "zero",
+      "notes": "-0"
+    },
+    {
+      "name": "pos_one",
+      "input_f32": 1.0,
+      "input_f32_hex": "0x3F800000",
+      "fp8_bits_hex": "0x38",
+      "fp8_bits_int": 56,
+      "decoded_f32": 1.0,
+      "abs_error": 0.0,
+      "category": "normal",
+      "notes": "exact 1.0 = 0x38"
+    },
+    {
+      "name": "neg_one",
+      "input_f32": -1.0,
+      "input_f32_hex": "0xBF800000",
+      "fp8_bits_hex": "0xB8",
+      "fp8_bits_int": 184,
+      "decoded_f32": -1.0,
+      "abs_error": 0.0,
+      "category": "normal",
+      "notes": "exact -1.0 = 0xB8"
+    },
+    {
+      "name": "pos_two",
+      "input_f32": 2.0,
+      "input_f32_hex": "0x40000000",
+      "fp8_bits_hex": "0x40",
+      "fp8_bits_int": 64,
+      "decoded_f32": 2.0,
+      "abs_error": 0.0,
+      "category": "normal",
+      "notes": "exact 2.0 = 0x40"
+    },
+    {
+      "name": "pos_half",
+      "input_f32": 0.5,
+      "input_f32_hex": "0x3F000000",
+      "fp8_bits_hex": "0x30",
+      "fp8_bits_int": 48,
+      "decoded_f32": 0.5,
+      "abs_error": 0.0,
+      "category": "normal",
+      "notes": "exact 0.5 = 0x30"
+    },
+    {
+      "name": "max_finite",
+      "input_f32": 448.0,
+      "input_f32_hex": "0x43E00000",
+      "fp8_bits_hex": "0x7E",
+      "fp8_bits_int": 126,
+      "decoded_f32": 448.0,
+      "abs_error": 0.0,
+      "category": "normal",
+      "notes": "max finite e4m3 = 0x7E"
+    },
+    {
+      "name": "neg_max_finite",
+      "input_f32": -448.0,
+      "input_f32_hex": "0xC3E00000",
+      "fp8_bits_hex": "0xFE",
+      "fp8_bits_int": 254,
+      "decoded_f32": -448.0,
+      "abs_error": 0.0,
+      "category": "normal",
+      "notes": "min finite e4m3 = 0xFE"
+    },
+    {
+      "name": "smallest_subnormal",
+      "input_f32": 0.001953125,
+      "input_f32_hex": "0x3B000000",
+      "fp8_bits_hex": "0x01",
+      "fp8_bits_int": 1,
+      "decoded_f32": 0.001953125,
+      "abs_error": 0.0,
+      "category": "subnormal",
+      "notes": "1/8 * 2^-6 = 2^-9"
+    },
+    {
+      "name": "anchor_phi_sum",
+      "input_f32": 3.0,
+      "input_f32_hex": "0x40400000",
+      "fp8_bits_hex": "0x44",
+      "fp8_bits_int": 68,
+      "decoded_f32": 3.0,
+      "abs_error": 0.0,
+      "category": "anchor",
+      "notes": "phi^2 + 1/phi^2 = 3 = 0x44"
+    },
+    {
+      "name": "phi",
+      "input_f32": 1.618033988749895,
+      "input_f32_hex": "0x3FCF1BBD",
+      "fp8_bits_hex": "0x3D",
+      "fp8_bits_int": 61,
+      "decoded_f32": 1.625,
+      "abs_error": 0.0069660112501050975,
+      "category": "transcendental",
+      "notes": "golden ratio rounded to e4m3"
+    },
+    {
+      "name": "inv_phi",
+      "input_f32": 0.6180339887498948,
+      "input_f32_hex": "0x3F1E377A",
+      "fp8_bits_hex": "0x32",
+      "fp8_bits_int": 50,
+      "decoded_f32": 0.625,
+      "abs_error": 0.0069660112501052085,
+      "category": "transcendental",
+      "notes": "1/phi rounded to e4m3"
+    },
+    {
+      "name": "nan",
+      "input_f32": "NaN",
+      "input_f32_hex": "0x7FC00000",
+      "fp8_bits_hex": "0x7F",
+      "fp8_bits_int": 127,
+      "decoded_f32": "NaN",
+      "abs_error": "NaN",
+      "category": "nan",
+      "notes": "canonical NaN 0x7F"
+    },
+    {
+      "name": "overflow_sat",
+      "input_f32": 1000.0,
+      "input_f32_hex": "0x447A0000",
+      "fp8_bits_hex": "0x7E",
+      "fp8_bits_int": 126,
+      "decoded_f32": 448.0,
+      "abs_error": 552.0,
+      "category": "overflow",
+      "notes": "INTERPRETATION GAP: spec ambiguity between saturate-to-max and overflow-to-NaN. This pack chooses saturate-to-max.",
+      "interpretation_gap": true,
+      "interpretations": {
+        "ocp_e4m3_saturate_to_max": {
+          "decoded": 448.0,
+          "bits": "0x7E",
+          "rationale": "OCP FP8 v1.0 spec: 'saturate to max finite value on overflow'",
+          "vendors_observed": [
+            "tt-metal",
+            "AMD MI300 fp8"
+          ]
+        },
+        "ml_dtypes_overflow_to_nan": {
+          "decoded": "NaN",
+          "bits": "0x7F",
+          "rationale": "Google ml_dtypes float8_e4m3fn: overflow encodes as NaN (saturation NOT default)",
+          "vendors_observed": [
+            "JAX",
+            "Google TPU bf16-paired fp8"
+          ]
+        }
+      },
+      "bits_under_test": {
+        "this_pack": "0x7E (ocp_e4m3_saturate_to_max)"
+      }
+    },
+    {
+      "name": "underflow_zero",
+      "input_f32": 0.0009765625,
+      "input_f32_hex": "0x3A800000",
+      "fp8_bits_hex": "0x00",
+      "fp8_bits_int": 0,
+      "decoded_f32": 0.0,
+      "abs_error": 0.0009765625,
+      "category": "underflow",
+      "notes": "below smallest subnormal -> 0"
+    },
+    {
+      "name": "rte_midpoint",
+      "input_f32": 1.0625,
+      "input_f32_hex": "0x3F880000",
+      "fp8_bits_hex": "0x38",
+      "fp8_bits_int": 56,
+      "decoded_f32": 1.0,
+      "abs_error": 0.0625,
+      "category": "rounding",
+      "notes": "1.0625 between 1.0 (0x38) and 1.125 (0x39), RTE -> 1.0 (even mantissa 000)"
+    }
+  ],
+  "self_sha256_canonical": "fff0c30f8e6bee22b1a7d0e0e1cff65edde9d2b17ebf97dba0539973f0a5e89d",
+  "validation": {
+    "ground_truth": "ml_dtypes.float8_e4m3fn (Google/JAX 0.5.4)",
+    "match": "15/16",
+    "divergences": [
+      {
+        "vector": "overflow_sat",
+        "kind": "spec_ambiguity",
+        "this_pack_choice": "saturate-to-max (tt-metal/AMD convention)",
+        "ml_dtypes_choice": "overflow-to-NaN (JAX/TPU convention)",
+        "ruler_significance": "this is precisely the kind of interpretation gap a conformance suite is designed to expose"
+      }
+    ]
+  }
+}

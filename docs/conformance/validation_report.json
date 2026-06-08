@@ -1,0 +1,583 @@
+{
+  "tool": "ml_dtypes 0.5.4 (Google/JAX ground truth)",
+  "timestamp": "2026-06-08T19:20+07:00",
+  "anchor": "phi^2 + 1/phi^2 = 3 (arXiv:2606.05017)",
+  "bf16": {
+    "total": 21,
+    "passed": 21,
+    "failed": [],
+    "all": [
+      {
+        "name": "pos_zero",
+        "input": 0.0,
+        "ours": "0x0000",
+        "ml_dtypes": "0x0000",
+        "match": true,
+        "category": "zero"
+      },
+      {
+        "name": "neg_zero",
+        "input": -0.0,
+        "ours": "0x8000",
+        "ml_dtypes": "0x8000",
+        "match": true,
+        "category": "zero"
+      },
+      {
+        "name": "pos_one",
+        "input": 1.0,
+        "ours": "0x3F80",
+        "ml_dtypes": "0x3F80",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "neg_one",
+        "input": -1.0,
+        "ours": "0xBF80",
+        "ml_dtypes": "0xBF80",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "three_plus_one_half",
+        "input": 4.5,
+        "ours": "0x4090",
+        "ml_dtypes": "0x4090",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "rte_midpoint_to_even",
+        "input": 1.00390625,
+        "ours": "0x3F80",
+        "ml_dtypes": "0x3F80",
+        "match": true,
+        "category": "rounding"
+      },
+      {
+        "name": "rte_midpoint_to_even_up",
+        "input": 1.01171875,
+        "ours": "0x3F82",
+        "ml_dtypes": "0x3F82",
+        "match": true,
+        "category": "rounding"
+      },
+      {
+        "name": "anchor_phi_squared_sum",
+        "input": 3.0,
+        "ours": "0x4040",
+        "ml_dtypes": "0x4040",
+        "match": true,
+        "category": "anchor"
+      },
+      {
+        "name": "smallest_normal",
+        "input": 1.1754943508222875e-38,
+        "ours": "0x0080",
+        "ml_dtypes": "0x0080",
+        "match": true,
+        "category": "subnormal_boundary"
+      },
+      {
+        "name": "pos_inf",
+        "input": Infinity,
+        "ours": "0x7F80",
+        "ml_dtypes": "0x7F80",
+        "match": true,
+        "category": "inf"
+      },
+      {
+        "name": "neg_inf",
+        "input": -Infinity,
+        "ours": "0xFF80",
+        "ml_dtypes": "0xFF80",
+        "match": true,
+        "category": "inf"
+      },
+      {
+        "name": "qnan",
+        "input": "NaN",
+        "ours": "0x7FC0",
+        "ml_dtypes": "0x7FC0",
+        "match": true,
+        "category": "nan"
+      },
+      {
+        "name": "phi_exact",
+        "input": 1.618033988749895,
+        "ours": "0x3FCF",
+        "ml_dtypes": "0x3FCF",
+        "match": true,
+        "category": "transcendental"
+      },
+      {
+        "name": "inv_phi_exact",
+        "input": 0.6180339887498948,
+        "ours": "0x3F1E",
+        "ml_dtypes": "0x3F1E",
+        "match": true,
+        "category": "transcendental"
+      },
+      {
+        "name": "two_via_add",
+        "input": 2.0,
+        "ours": "0x4000",
+        "ml_dtypes": "0x4000",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "rte_neg_midpoint",
+        "input": -1.00390625,
+        "ours": "0xBF80",
+        "ml_dtypes": "0xBF80",
+        "match": true,
+        "category": "rounding"
+      },
+      {
+        "name": "min_subnormal_bf16",
+        "input": 9.183549615799121e-41,
+        "ours": "0x0001",
+        "ml_dtypes": "0x0001",
+        "match": true,
+        "category": "subnormal"
+      },
+      {
+        "name": "largest_finite_bf16",
+        "input": 3.3895313892515355e+38,
+        "ours": "0x7F7F",
+        "ml_dtypes": "0x7F7F",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "overflow_to_inf",
+        "input": 3.4028234663852886e+38,
+        "ours": "0x7F80",
+        "ml_dtypes": "0x7F80",
+        "match": true,
+        "category": "overflow"
+      },
+      {
+        "name": "underflow_to_zero",
+        "input": 1.401298464324817e-45,
+        "ours": "0x0000",
+        "ml_dtypes": "0x0000",
+        "match": true,
+        "category": "underflow"
+      },
+      {
+        "name": "zero_point_one",
+        "input": 0.1,
+        "ours": "0x3DCD",
+        "ml_dtypes": "0x3DCD",
+        "match": true,
+        "category": "non_exact"
+      }
+    ]
+  },
+  "fp8_e4m3": {
+    "total": 16,
+    "passed": 15,
+    "failed": [
+      {
+        "name": "overflow_sat",
+        "input": 1000.0,
+        "ours": "0x7E",
+        "ml_dtypes": "0x7F",
+        "match": false,
+        "category": "overflow"
+      }
+    ],
+    "all": [
+      {
+        "name": "pos_zero",
+        "input": 0.0,
+        "ours": "0x00",
+        "ml_dtypes": "0x00",
+        "match": true,
+        "category": "zero"
+      },
+      {
+        "name": "neg_zero",
+        "input": -0.0,
+        "ours": "0x80",
+        "ml_dtypes": "0x80",
+        "match": true,
+        "category": "zero"
+      },
+      {
+        "name": "pos_one",
+        "input": 1.0,
+        "ours": "0x38",
+        "ml_dtypes": "0x38",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "neg_one",
+        "input": -1.0,
+        "ours": "0xB8",
+        "ml_dtypes": "0xB8",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "pos_two",
+        "input": 2.0,
+        "ours": "0x40",
+        "ml_dtypes": "0x40",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "pos_half",
+        "input": 0.5,
+        "ours": "0x30",
+        "ml_dtypes": "0x30",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "max_finite",
+        "input": 448.0,
+        "ours": "0x7E",
+        "ml_dtypes": "0x7E",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "neg_max_finite",
+        "input": -448.0,
+        "ours": "0xFE",
+        "ml_dtypes": "0xFE",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "smallest_subnormal",
+        "input": 0.001953125,
+        "ours": "0x01",
+        "ml_dtypes": "0x01",
+        "match": true,
+        "category": "subnormal"
+      },
+      {
+        "name": "anchor_phi_sum",
+        "input": 3.0,
+        "ours": "0x44",
+        "ml_dtypes": "0x44",
+        "match": true,
+        "category": "anchor"
+      },
+      {
+        "name": "phi",
+        "input": 1.618033988749895,
+        "ours": "0x3D",
+        "ml_dtypes": "0x3D",
+        "match": true,
+        "category": "transcendental"
+      },
+      {
+        "name": "inv_phi",
+        "input": 0.6180339887498948,
+        "ours": "0x32",
+        "ml_dtypes": "0x32",
+        "match": true,
+        "category": "transcendental"
+      },
+      {
+        "name": "nan",
+        "input": "NaN",
+        "ours": "0x7F",
+        "ml_dtypes": "0x7F",
+        "match": true,
+        "category": "nan"
+      },
+      {
+        "name": "overflow_sat",
+        "input": 1000.0,
+        "ours": "0x7E",
+        "ml_dtypes": "0x7F",
+        "match": false,
+        "category": "overflow"
+      },
+      {
+        "name": "underflow_zero",
+        "input": 0.0009765625,
+        "ours": "0x00",
+        "ml_dtypes": "0x00",
+        "match": true,
+        "category": "underflow"
+      },
+      {
+        "name": "rte_midpoint",
+        "input": 1.0625,
+        "ours": "0x38",
+        "ml_dtypes": "0x38",
+        "match": true,
+        "category": "rounding"
+      }
+    ]
+  },
+  "fp8_e5m2": {
+    "total": 17,
+    "passed": 17,
+    "failed": [],
+    "all": [
+      {
+        "name": "pos_zero",
+        "input": 0.0,
+        "ours": "0x00",
+        "ml_dtypes": "0x00",
+        "match": true,
+        "category": "zero"
+      },
+      {
+        "name": "neg_zero",
+        "input": -0.0,
+        "ours": "0x80",
+        "ml_dtypes": "0x80",
+        "match": true,
+        "category": "zero"
+      },
+      {
+        "name": "pos_one",
+        "input": 1.0,
+        "ours": "0x3C",
+        "ml_dtypes": "0x3C",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "neg_one",
+        "input": -1.0,
+        "ours": "0xBC",
+        "ml_dtypes": "0xBC",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "pos_two",
+        "input": 2.0,
+        "ours": "0x40",
+        "ml_dtypes": "0x40",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "pos_half",
+        "input": 0.5,
+        "ours": "0x38",
+        "ml_dtypes": "0x38",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "max_finite",
+        "input": 57344.0,
+        "ours": "0x7B",
+        "ml_dtypes": "0x7B",
+        "match": true,
+        "category": "normal"
+      },
+      {
+        "name": "anchor_phi_sum",
+        "input": 3.0,
+        "ours": "0x42",
+        "ml_dtypes": "0x42",
+        "match": true,
+        "category": "anchor"
+      },
+      {
+        "name": "phi",
+        "input": 1.618033988749895,
+        "ours": "0x3E",
+        "ml_dtypes": "0x3E",
+        "match": true,
+        "category": "transcendental"
+      },
+      {
+        "name": "inv_phi",
+        "input": 0.6180339887498948,
+        "ours": "0x39",
+        "ml_dtypes": "0x39",
+        "match": true,
+        "category": "transcendental"
+      },
+      {
+        "name": "pos_inf",
+        "input": Infinity,
+        "ours": "0x7C",
+        "ml_dtypes": "0x7C",
+        "match": true,
+        "category": "inf"
+      },
+      {
+        "name": "neg_inf",
+        "input": -Infinity,
+        "ours": "0xFC",
+        "ml_dtypes": "0xFC",
+        "match": true,
+        "category": "inf"
+      },
+      {
+        "name": "nan",
+        "input": "NaN",
+        "ours": "0x7F",
+        "ml_dtypes": "0x7E",
+        "match": true,
+        "category": "nan"
+      },
+      {
+        "name": "smallest_subnormal",
+        "input": 1.52587890625e-05,
+        "ours": "0x01",
+        "ml_dtypes": "0x01",
+        "match": true,
+        "category": "subnormal"
+      },
+      {
+        "name": "overflow_to_inf",
+        "input": 1000000000.0,
+        "ours": "0x7C",
+        "ml_dtypes": "0x7C",
+        "match": true,
+        "category": "overflow"
+      },
+      {
+        "name": "underflow_zero",
+        "input": 7.62939453125e-06,
+        "ours": "0x00",
+        "ml_dtypes": "0x00",
+        "match": true,
+        "category": "underflow"
+      },
+      {
+        "name": "rte_midpoint",
+        "input": 1.125,
+        "ours": "0x3C",
+        "ml_dtypes": "0x3C",
+        "match": true,
+        "category": "rounding"
+      }
+    ]
+  },
+  "e8m0_block": {
+    "total": 11,
+    "passed": 10,
+    "failed": [
+      {
+        "name": "underflow",
+        "input": 6.223015277861142e-61,
+        "ours_original": "0x00",
+        "ml_dtypes": "0xFF",
+        "ref_decoded": "NaN",
+        "match": false,
+        "category": "underflow"
+      }
+    ],
+    "all": [
+      {
+        "name": "one",
+        "input": 1.0,
+        "ours_original": "0x7F",
+        "ml_dtypes": "0x7F",
+        "ref_decoded": 1.0,
+        "match": true,
+        "category": "anchor"
+      },
+      {
+        "name": "two",
+        "input": 2.0,
+        "ours_original": "0x80",
+        "ml_dtypes": "0x80",
+        "ref_decoded": 2.0,
+        "match": true,
+        "category": "power"
+      },
+      {
+        "name": "half",
+        "input": 0.5,
+        "ours_original": "0x7E",
+        "ml_dtypes": "0x7E",
+        "ref_decoded": 0.5,
+        "match": true,
+        "category": "power"
+      },
+      {
+        "name": "max_finite",
+        "input": 1.7014118346046923e+38,
+        "ours_original": "0xFE",
+        "ml_dtypes": "0xFE",
+        "ref_decoded": 1.7014118346046923e+38,
+        "match": true,
+        "category": "boundary"
+      },
+      {
+        "name": "min_subnormal_boundary",
+        "input": 1.1754943508222875e-38,
+        "ours_original": "0x01",
+        "ml_dtypes": "0x01",
+        "ref_decoded": 1.1754943508222875e-38,
+        "match": true,
+        "category": "boundary"
+      },
+      {
+        "name": "anchor_three_rounded",
+        "input": 3.0,
+        "ours_original": "0x81",
+        "ml_dtypes": "0x81",
+        "ref_decoded": 4.0,
+        "match": true,
+        "category": "anchor"
+      },
+      {
+        "name": "eight",
+        "input": 8.0,
+        "ours_original": "0x82",
+        "ml_dtypes": "0x82",
+        "ref_decoded": 8.0,
+        "match": true,
+        "category": "power"
+      },
+      {
+        "name": "nan_encoded",
+        "input": "NaN",
+        "ours_original": "0xFF",
+        "ml_dtypes": "0xFF",
+        "ref_decoded": "NaN",
+        "match": true,
+        "category": "nan"
+      },
+      {
+        "name": "zero_encoded",
+        "input": 0.0,
+        "ours_original": "0x00",
+        "ml_dtypes": "0xFF",
+        "ref_decoded": "NaN",
+        "match": true,
+        "category": "zero"
+      },
+      {
+        "name": "overflow",
+        "input": 1.6069380442589903e+60,
+        "ours_original": "0xFF",
+        "ml_dtypes": "0xFF",
+        "ref_decoded": "NaN",
+        "match": true,
+        "category": "overflow"
+      },
+      {
+        "name": "underflow",
+        "input": 6.223015277861142e-61,
+        "ours_original": "0x00",
+        "ml_dtypes": "0xFF",
+        "ref_decoded": "NaN",
+        "match": false,
+        "category": "underflow"
+      }
+    ]
+  }
+}

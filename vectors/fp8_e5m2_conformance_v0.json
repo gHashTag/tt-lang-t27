@@ -1,0 +1,215 @@
+{
+  "schema": "t27-conformance/v0.1",
+  "format": "FP8_E5M2",
+  "standard": "OCP FP8 v1.0 (https://opencompute.org)",
+  "layout": "S1E5M2 bias=15, has Inf at exp=11111 mant=00, NaN at exp=11111 mant!=0",
+  "ssot": "https://github.com/gHashTag/t27/blob/master/conformance/FORMAT-SPEC-001.json",
+  "preprint": "https://arxiv.org/abs/2606.05017",
+  "anchor_identity": "phi^2 + 1/phi^2 = 3",
+  "anchor_check": {
+    "value": 3.0,
+    "expected": 3.0,
+    "fp8_bits": "0x42",
+    "exact_in_e5m2": true
+  },
+  "rounding_mode": "round-to-nearest-even",
+  "saturation": false,
+  "max_finite": 57344.0,
+  "n_vectors": 17,
+  "vectors": [
+    {
+      "name": "pos_zero",
+      "input_f32": 0.0,
+      "input_f32_hex": "0x00000000",
+      "fp8_bits_hex": "0x00",
+      "fp8_bits_int": 0,
+      "decoded_f32": 0.0,
+      "abs_error": 0.0,
+      "category": "zero",
+      "notes": "+0"
+    },
+    {
+      "name": "neg_zero",
+      "input_f32": -0.0,
+      "input_f32_hex": "0x80000000",
+      "fp8_bits_hex": "0x80",
+      "fp8_bits_int": 128,
+      "decoded_f32": -0.0,
+      "abs_error": 0.0,
+      "category": "zero",
+      "notes": "-0"
+    },
+    {
+      "name": "pos_one",
+      "input_f32": 1.0,
+      "input_f32_hex": "0x3F800000",
+      "fp8_bits_hex": "0x3C",
+      "fp8_bits_int": 60,
+      "decoded_f32": 1.0,
+      "abs_error": 0.0,
+      "category": "normal",
+      "notes": "exact 1.0 = 0x3C"
+    },
+    {
+      "name": "neg_one",
+      "input_f32": -1.0,
+      "input_f32_hex": "0xBF800000",
+      "fp8_bits_hex": "0xBC",
+      "fp8_bits_int": 188,
+      "decoded_f32": -1.0,
+      "abs_error": 0.0,
+      "category": "normal",
+      "notes": "exact -1.0 = 0xBC"
+    },
+    {
+      "name": "pos_two",
+      "input_f32": 2.0,
+      "input_f32_hex": "0x40000000",
+      "fp8_bits_hex": "0x40",
+      "fp8_bits_int": 64,
+      "decoded_f32": 2.0,
+      "abs_error": 0.0,
+      "category": "normal",
+      "notes": "exact 2.0 = 0x40"
+    },
+    {
+      "name": "pos_half",
+      "input_f32": 0.5,
+      "input_f32_hex": "0x3F000000",
+      "fp8_bits_hex": "0x38",
+      "fp8_bits_int": 56,
+      "decoded_f32": 0.5,
+      "abs_error": 0.0,
+      "category": "normal",
+      "notes": "0.5 = 0x38"
+    },
+    {
+      "name": "max_finite",
+      "input_f32": 57344.0,
+      "input_f32_hex": "0x47600000",
+      "fp8_bits_hex": "0x7B",
+      "fp8_bits_int": 123,
+      "decoded_f32": 57344.0,
+      "abs_error": 0.0,
+      "category": "normal",
+      "notes": "max finite e5m2 (exp=30, mant=11) = 0x7B"
+    },
+    {
+      "name": "anchor_phi_sum",
+      "input_f32": 3.0,
+      "input_f32_hex": "0x40400000",
+      "fp8_bits_hex": "0x42",
+      "fp8_bits_int": 66,
+      "decoded_f32": 3.0,
+      "abs_error": 0.0,
+      "category": "anchor",
+      "notes": "phi^2 + 1/phi^2 = 3, exact in e5m2"
+    },
+    {
+      "name": "phi",
+      "input_f32": 1.618033988749895,
+      "input_f32_hex": "0x3FCF1BBD",
+      "fp8_bits_hex": "0x3E",
+      "fp8_bits_int": 62,
+      "decoded_f32": 1.5,
+      "abs_error": 0.1180339887498949,
+      "category": "transcendental",
+      "notes": "golden ratio rounded to e5m2 (2 mantissa bits)"
+    },
+    {
+      "name": "inv_phi",
+      "input_f32": 0.6180339887498948,
+      "input_f32_hex": "0x3F1E377A",
+      "fp8_bits_hex": "0x39",
+      "fp8_bits_int": 57,
+      "decoded_f32": 0.625,
+      "abs_error": 0.0069660112501052085,
+      "category": "transcendental",
+      "notes": "1/phi rounded to e5m2"
+    },
+    {
+      "name": "pos_inf",
+      "input_f32": Infinity,
+      "input_f32_hex": "0x7F800000",
+      "fp8_bits_hex": "0x7C",
+      "fp8_bits_int": 124,
+      "decoded_f32": "+Inf",
+      "abs_error": 0.0,
+      "category": "inf",
+      "notes": "+Inf = 0x7C"
+    },
+    {
+      "name": "neg_inf",
+      "input_f32": -Infinity,
+      "input_f32_hex": "0xFF800000",
+      "fp8_bits_hex": "0xFC",
+      "fp8_bits_int": 252,
+      "decoded_f32": "-Inf",
+      "abs_error": 0.0,
+      "category": "inf",
+      "notes": "-Inf = 0xFC"
+    },
+    {
+      "name": "nan",
+      "input_f32": "NaN",
+      "input_f32_hex": "0x7FC00000",
+      "fp8_bits_hex": "0x7F",
+      "fp8_bits_int": 127,
+      "decoded_f32": "NaN",
+      "abs_error": "NaN",
+      "category": "nan",
+      "notes": "qNaN canonical 0x7F"
+    },
+    {
+      "name": "smallest_subnormal",
+      "input_f32": 1.52587890625e-05,
+      "input_f32_hex": "0x37800000",
+      "fp8_bits_hex": "0x01",
+      "fp8_bits_int": 1,
+      "decoded_f32": 1.52587890625e-05,
+      "abs_error": 0.0,
+      "category": "subnormal",
+      "notes": "smallest positive subnormal in e5m2"
+    },
+    {
+      "name": "overflow_to_inf",
+      "input_f32": 1000000000.0,
+      "input_f32_hex": "0x4E6E6B28",
+      "fp8_bits_hex": "0x7C",
+      "fp8_bits_int": 124,
+      "decoded_f32": "+Inf",
+      "abs_error": Infinity,
+      "category": "overflow",
+      "notes": "1e9 > 57344, rounds to +Inf"
+    },
+    {
+      "name": "underflow_zero",
+      "input_f32": 7.62939453125e-06,
+      "input_f32_hex": "0x37000000",
+      "fp8_bits_hex": "0x00",
+      "fp8_bits_int": 0,
+      "decoded_f32": 0.0,
+      "abs_error": 7.62939453125e-06,
+      "category": "underflow",
+      "notes": "below subnormal range -> 0"
+    },
+    {
+      "name": "rte_midpoint",
+      "input_f32": 1.125,
+      "input_f32_hex": "0x3F900000",
+      "fp8_bits_hex": "0x3C",
+      "fp8_bits_int": 60,
+      "decoded_f32": 1.0,
+      "abs_error": 0.125,
+      "category": "rounding",
+      "notes": "1.125 between 1.0 (mant=00) and 1.25 (mant=01), RTE -> 1.0 (even)"
+    }
+  ],
+  "self_sha256_canonical": "66cd7be1500ec8003eb5dee7532bb4e954b7bc0084b6f22a75d02f7842f23a56",
+  "validation": {
+    "ground_truth": "ml_dtypes.float8_e5m2 (Google/JAX 0.5.4)",
+    "match": "17/17",
+    "divergences": []
+  },
+  "cross_vendor_notes": "FP8 E5M2 has IEEE 754-like structure (has Inf, has NaN) and exhibits high inter-vendor agreement. NVIDIA Hopper FP8, AMD MI300 FP8, Google TPU FP8 all converge on the same bit patterns. ml_dtypes matches this pack on all 17 boundary cases."
+}
