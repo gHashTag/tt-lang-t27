@@ -1,4 +1,4 @@
-# v0.4.0-pre (2026-06-08)
+# v0.4.0 (2026-06-08)
 
 ## New packs (4)
 
@@ -13,7 +13,7 @@
 
 ## Manifest
 
-`docs/conformance/MANIFEST_v0.4.0-pre.json` lists all 6 packs (2 LIVE + 4 NEW) with per-pack self-SHA-256 fingerprints, ml_dtypes ground-truth validation, and documented divergences.
+`docs/conformance/MANIFEST_v0.4.0.json` lists all 6 packs (2 LIVE + 4 NEW) with per-pack self-SHA-256 fingerprints, ml_dtypes ground-truth validation, and documented divergences.
 
 ## Schema
 

@@ -1,6 +1,6 @@
 {
   "schema": "t27-conformance-manifest/v0.1",
-  "version": "0.4.0-pre",
+  "version": "0.4.0",
   "release_date": "2026-06-08",
   "anchor": "phi^2 + 1/phi^2 = 3 (arXiv:2606.05017)",
   "ground_truth_tool": "ml_dtypes 0.5.4 (Google/JAX)",
