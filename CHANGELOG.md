@@ -5,6 +5,46 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2026-06-08
+
+NVFP4 added, P3109 cross-walk doc, catalog invariants test, CLI subcommand refactor.
+
+### Added
+
+- **NVFP4 row** in the Microscaling cluster (status: Experimental,
+  standard: NVIDIA Blackwell vendor-specific, ~4.5 bits/value with
+  E4M3 block-scale-16 + FP32 per-tensor). Sources: NVIDIA developer
+  blog 2025-06-24; MR-GPTQ arXiv:2509.23202. Mitigates W-14 from the
+  tt-lang-integration-weakness-map.
+- **`docs/P3109_CROSSWALK.md`** -- descriptive cluster-by-cluster map
+  between the 84-format catalog and the IEEE P3109 working-group draft.
+  10 in-scope rows enumerated (fp8/fp6/fp4 family + mxfp8/mxfp6/mxfp4
+  + nvfp4). Mitigates W-15.
+- **`tests/test_catalog_invariants.py`** -- 15 property-style invariants
+  on the SSoT JSON (id uniqueness, slug shape, cluster partition,
+  IEEE bit-sum identity, anchor/arxiv/url shape, JSON SHA-256
+  stability). Mitigates W-17.
+- **CLI subcommand refactor** (`tt-lang-t27-catalog count|list|cluster
+  NAME|status LABEL|show ID|clusters|statuses|dump|anchor`) with
+  `--json` as a global flag. Legacy `--count`/`--list`/etc. forms
+  still work and are documented as deprecated. Mitigates W-16.
+
+### Changed
+
+- Catalog count: 83 -> 84.
+- Microscaling cluster count: 3 -> 4.
+- `tt_lang_t27.__version__`: 0.3.0 -> 0.3.1.
+- JSON SHA-256:
+  `01cd5d0b83b091bbd08345233a878c3402f6bac61db52a7b6f14b9c033677398`.
+- All catalog docstrings/tests updated to say "84-format".
+
+### Verified
+
+- `pytest -q`: 55 tests pass (was 40 in 0.3.0; +15 new invariants).
+- `tt-lang-t27-catalog count` returns 84.
+- `tt-lang-t27-catalog cluster Microscaling` lists mxfp8/mxfp6/mxfp4/nvfp4.
+- Anchor identity exact in IEEE-754 double: `phi^2 + 1/phi^2 == 3.0`.
+
 ## [0.3.0] - 2026-06-08
 
 Full 83-format SSOT catalog from `gHashTag/t27` shipped inside the wheel.
