@@ -23,8 +23,24 @@ from .mxfp4 import (
     BLOCK_SIZE,
     SCALE_BIAS,
 )
+from .catalog import (
+    ANCHOR,
+    ARXIV,
+    SSOT_URL,
+    CATALOG,
+    Format,
+    by_id,
+    find,
+    by_cluster,
+    by_status,
+    clusters,
+    statuses,
+    count as catalog_count,
+    as_dict as catalog_as_dict,
+    ssot_source,
+)
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "Registry",
@@ -49,4 +65,18 @@ __all__ = [
     "MxBlock",
     "BLOCK_SIZE",
     "SCALE_BIAS",
+    "ANCHOR",
+    "ARXIV",
+    "SSOT_URL",
+    "CATALOG",
+    "Format",
+    "by_id",
+    "find",
+    "by_cluster",
+    "by_status",
+    "clusters",
+    "statuses",
+    "catalog_count",
+    "catalog_as_dict",
+    "ssot_source",
 ]

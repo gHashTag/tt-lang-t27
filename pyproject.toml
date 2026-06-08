@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tt-lang-t27"
-version = "0.2.0"
-description = "Open Apache-2.0 numeric-format SSOT bridge from t27 (GoldenFloat + MXFP4) to tt-lang kernels."
+version = "0.3.0"
+description = "Open Apache-2.0 numeric-format SSOT bridge: 83-format catalog from t27 (GF + MXFP4 + IEEE + posit + takum + lns + ...) for tt-lang kernels."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
@@ -45,9 +45,13 @@ Issues        = "https://github.com/gHashTag/tt-lang-t27/issues"
 [project.scripts]
 tt-lang-t27-conform = "tt_lang_t27.cli:main"
 tt-lang-t27-mxfp4-conform = "tt_lang_t27.cli_mxfp4:main"
+tt-lang-t27-catalog = "tt_lang_t27.cli_catalog:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/tt_lang_t27"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/tt_lang_t27/data/all_formats_v0.json" = "tt_lang_t27/data/all_formats_v0.json"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
