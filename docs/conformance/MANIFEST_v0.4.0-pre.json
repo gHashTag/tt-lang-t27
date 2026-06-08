@@ -1,0 +1,82 @@
+{
+  "schema": "t27-conformance-manifest/v0.1",
+  "version": "0.4.0-pre",
+  "release_date": "2026-06-08",
+  "anchor": "phi^2 + 1/phi^2 = 3 (arXiv:2606.05017)",
+  "ground_truth_tool": "ml_dtypes 0.5.4 (Google/JAX)",
+  "p3109_alignment": "see validation/p3109_crosswalk.md",
+  "packs": [
+    {
+      "file": "gf16_conformance_v0.json",
+      "format": "GF16",
+      "status": "LIVE in tt-lang-t27/vectors/",
+      "n_vectors": 21,
+      "self_sha256": "?",
+      "description": "GoldenFloat 16-bit (existing in repo)"
+    },
+    {
+      "file": "mxfp4_conformance_v0.json",
+      "format": "MXFP4",
+      "status": "LIVE in tt-lang-t27/vectors/",
+      "n_vectors": 12,
+      "self_sha256": "86c99d6f72375d751df4c74897904a0a36cff52e8d60cbfef5d58b71625d4b2f",
+      "description": "OCP MXFP4 block format (existing in repo)"
+    },
+    {
+      "file": "bf16_conformance_v0.json",
+      "format": "BF16",
+      "status": "NEW (2026-06-08)",
+      "n_vectors": 21,
+      "self_sha256": "320c1850b484674546785791b1c22d76feb4ea748c6669ffb633e5455d822b8a",
+      "validation": {
+        "ground_truth": "ml_dtypes.bfloat16 (Google/JAX 0.5.4)",
+        "match": "21/21",
+        "divergences": []
+      }
+    },
+    {
+      "file": "fp8_e4m3_conformance_v0.json",
+      "format": "FP8_E4M3",
+      "status": "NEW (2026-06-08)",
+      "n_vectors": 16,
+      "self_sha256": "fff0c30f8e6bee22b1a7d0e0e1cff65edde9d2b17ebf97dba0539973f0a5e89d",
+      "validation": {
+        "ground_truth": "ml_dtypes.float8_e4m3fn (Google/JAX 0.5.4)",
+        "match": "15/16",
+        "divergences": [
+          {
+            "vector": "overflow_sat",
+            "kind": "spec_ambiguity",
+            "this_pack_choice": "saturate-to-max (tt-metal/AMD convention)",
+            "ml_dtypes_choice": "overflow-to-NaN (JAX/TPU convention)",
+            "ruler_significance": "this is precisely the kind of interpretation gap a conformance suite is designed to expose"
+          }
+        ]
+      }
+    },
+    {
+      "file": "fp8_e5m2_conformance_v0.json",
+      "format": "FP8_E5M2",
+      "status": "NEW (2026-06-08)",
+      "n_vectors": 17,
+      "self_sha256": "66cd7be1500ec8003eb5dee7532bb4e954b7bc0084b6f22a75d02f7842f23a56",
+      "validation": {
+        "ground_truth": "ml_dtypes.float8_e5m2 (Google/JAX 0.5.4)",
+        "match": "17/17",
+        "divergences": []
+      }
+    },
+    {
+      "file": "e8m0_block_conformance_v0.json",
+      "format": "E8M0_BLOCK",
+      "status": "NEW (2026-06-08)",
+      "n_vectors": 11,
+      "self_sha256": "b211f1a863f71fd7c5e02e512efff0255ebcc51521311186e01cb9992e4464bd",
+      "validation": {
+        "ground_truth": "ml_dtypes.float8_e8m0fnu (Google/JAX 0.5.4)",
+        "match": "documented during cross-validation (OCP MX v1.0 spec compliance)",
+        "notes": "E8M0 is a scale-only format (no mantissa, no sign). Vectors regenerated using ml_dtypes ground truth, which follows OCP MX v1.0 spec semantics."
+      }
+    }
+  ]
+}

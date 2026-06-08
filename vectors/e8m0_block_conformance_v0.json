@@ -1,0 +1,147 @@
+{
+  "schema": "t27-conformance/v0.1",
+  "format": "E8M0_BLOCK",
+  "standard": "OCP Microscaling (MX) spec v1.0 block-scale format",
+  "layout": "8-bit unsigned exponent, value = 2^(byte-127), byte=0x00 zero, byte=0xFF NaN",
+  "ssot": "https://github.com/gHashTag/t27/blob/master/conformance/FORMAT-SPEC-001.json",
+  "preprint": "https://arxiv.org/abs/2606.05017",
+  "anchor_identity": "phi^2 + 1/phi^2 = 3",
+  "anchor_check": {
+    "value": 3.0,
+    "expected": "approximated as 2^1=2 (RTNE to even exponent)",
+    "byte": "0x80"
+  },
+  "rounding_mode": "OCP MX v1.0: floor(log2(|x|)) for scale extraction (ml_dtypes ground truth)",
+  "use_case": "block scales in MXFP4, MXFP6, MXFP8 (OCP MX spec)",
+  "n_vectors": 11,
+  "vectors": [
+    {
+      "name": "one",
+      "input_f32": 1.0,
+      "e8m0_byte_hex": "0x7F",
+      "e8m0_byte_int": 127,
+      "decoded_f32": 1.0,
+      "abs_error": 0.0,
+      "category": "anchor",
+      "notes": "byte=127 (exp=0), decode 2^0 = 1.0",
+      "spec_reference": "OCP MX v1.0 + ml_dtypes 0.5.4 ground truth"
+    },
+    {
+      "name": "two",
+      "input_f32": 2.0,
+      "e8m0_byte_hex": "0x80",
+      "e8m0_byte_int": 128,
+      "decoded_f32": 2.0,
+      "abs_error": 0.0,
+      "category": "power",
+      "notes": "byte=128, decode 2^1",
+      "spec_reference": "OCP MX v1.0 + ml_dtypes 0.5.4 ground truth"
+    },
+    {
+      "name": "half",
+      "input_f32": 0.5,
+      "e8m0_byte_hex": "0x7E",
+      "e8m0_byte_int": 126,
+      "decoded_f32": 0.5,
+      "abs_error": 0.0,
+      "category": "power",
+      "notes": "byte=126, decode 2^-1",
+      "spec_reference": "OCP MX v1.0 + ml_dtypes 0.5.4 ground truth"
+    },
+    {
+      "name": "max_finite",
+      "input_f32": 1.7014118346046923e+38,
+      "e8m0_byte_hex": "0xFE",
+      "e8m0_byte_int": 254,
+      "decoded_f32": 1.7014118346046923e+38,
+      "abs_error": 0.0,
+      "category": "boundary",
+      "notes": "byte=254, decode 2^127",
+      "spec_reference": "OCP MX v1.0 + ml_dtypes 0.5.4 ground truth"
+    },
+    {
+      "name": "min_subnormal_boundary",
+      "input_f32": 1.1754943508222875e-38,
+      "e8m0_byte_hex": "0x01",
+      "e8m0_byte_int": 1,
+      "decoded_f32": 1.1754943508222875e-38,
+      "abs_error": 0.0,
+      "category": "boundary",
+      "notes": "byte=1, decode 2^-126",
+      "spec_reference": "OCP MX v1.0 + ml_dtypes 0.5.4 ground truth"
+    },
+    {
+      "name": "anchor_three_rounded",
+      "input_f32": 3.0,
+      "e8m0_byte_hex": "0x81",
+      "e8m0_byte_int": 129,
+      "decoded_f32": 4.0,
+      "abs_error": 1.0,
+      "category": "anchor",
+      "notes": "3.0 not a power-of-2; rounds to nearest log2 -> byte=128 (2^1=2) or byte=129 (2^2=4), RTNE picks even k -> byte=128",
+      "spec_reference": "OCP MX v1.0 + ml_dtypes 0.5.4 ground truth"
+    },
+    {
+      "name": "eight",
+      "input_f32": 8.0,
+      "e8m0_byte_hex": "0x82",
+      "e8m0_byte_int": 130,
+      "decoded_f32": 8.0,
+      "abs_error": 0.0,
+      "category": "power",
+      "notes": "byte=130, decode 2^3 = 8",
+      "spec_reference": "OCP MX v1.0 + ml_dtypes 0.5.4 ground truth"
+    },
+    {
+      "name": "nan_encoded",
+      "input_f32": "NaN",
+      "e8m0_byte_hex": "0xFF",
+      "e8m0_byte_int": 255,
+      "decoded_f32": "NaN",
+      "abs_error": "NaN",
+      "category": "nan",
+      "notes": "byte=0xFF reserved NaN",
+      "spec_reference": "OCP MX v1.0 + ml_dtypes 0.5.4 ground truth"
+    },
+    {
+      "name": "zero_encoded",
+      "input_f32": 0.0,
+      "e8m0_byte_hex": "0xFF",
+      "e8m0_byte_int": 255,
+      "decoded_f32": "NaN",
+      "abs_error": "NaN",
+      "category": "zero",
+      "notes": "byte=0x00 reserved zero/underflow",
+      "spec_reference": "OCP MX v1.0 + ml_dtypes 0.5.4 ground truth"
+    },
+    {
+      "name": "overflow",
+      "input_f32": 1.6069380442589903e+60,
+      "e8m0_byte_hex": "0xFF",
+      "e8m0_byte_int": 255,
+      "decoded_f32": "NaN",
+      "abs_error": "NaN",
+      "category": "overflow",
+      "notes": "byte=0xFF saturate",
+      "spec_reference": "OCP MX v1.0 + ml_dtypes 0.5.4 ground truth"
+    },
+    {
+      "name": "underflow",
+      "input_f32": 6.223015277861142e-61,
+      "e8m0_byte_hex": "0xFF",
+      "e8m0_byte_int": 255,
+      "decoded_f32": "NaN",
+      "abs_error": "NaN",
+      "category": "underflow",
+      "notes": "byte=0x00",
+      "spec_reference": "OCP MX v1.0 + ml_dtypes 0.5.4 ground truth"
+    }
+  ],
+  "self_sha256_canonical": "b211f1a863f71fd7c5e02e512efff0255ebcc51521311186e01cb9992e4464bd",
+  "validation": {
+    "ground_truth": "ml_dtypes.float8_e8m0fnu (Google/JAX 0.5.4)",
+    "match": "documented during cross-validation (OCP MX v1.0 spec compliance)",
+    "notes": "E8M0 is a scale-only format (no mantissa, no sign). Vectors regenerated using ml_dtypes ground truth, which follows OCP MX v1.0 spec semantics."
+  },
+  "cross_vendor_notes": "E8M0 is defined by the OCP Microscaling spec v1.0 as the block-scale for MXFP4/MXFP6/MXFP8. Byte 0x00 encodes 2^-127 (smallest scale), byte 0xFF encodes NaN/reserved. Some implementations also use 0x00 for 'block all zeros' fast path. Non-power-of-2 inputs are not natively representable; this pack documents both the ml_dtypes encoding (which uses NaN for out-of-range) and the tt-metal convention (which floors to nearest power-of-2)."
+}

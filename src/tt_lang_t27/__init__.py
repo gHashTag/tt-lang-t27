@@ -40,7 +40,7 @@ from .catalog import (
     ssot_source,
 )
 
-__version__ = "0.3.1"
+__version__ = "0.4.0-pre"
 
 __all__ = [
     "Registry",
