@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tt-lang-t27"
-version = "0.1.0"
-description = "Open Apache-2.0 numeric-format SSOT bridge from t27 (GoldenFloat) to tt-lang kernels."
+version = "0.2.0"
+description = "Open Apache-2.0 numeric-format SSOT bridge from t27 (GoldenFloat + MXFP4) to tt-lang kernels."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
@@ -14,6 +14,8 @@ keywords = [
     "tt-lang",
     "tenstorrent",
     "goldenfloat",
+    "mxfp4",
+    "ocp-microscaling",
     "numeric-format",
     "conformance-vectors",
     "formal-verification",
@@ -42,6 +44,7 @@ Issues        = "https://github.com/gHashTag/tt-lang-t27/issues"
 
 [project.scripts]
 tt-lang-t27-conform = "tt_lang_t27.cli:main"
+tt-lang-t27-mxfp4-conform = "tt_lang_t27.cli_mxfp4:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/tt_lang_t27"]

@@ -15,6 +15,19 @@
       "decoded_value_formula": "(-1)^S * 2^(E - 31) * (1 + M / 2^9)",
       "status": "PRIMARY, SIM-level",
       "conformance_vectors": "gf16_conformance_v0.json"
+    },
+    "MXFP4": {
+      "kind": "ocp_microscaling",
+      "bits": 4,
+      "sign_bits": 1,
+      "exponent_bits": 2,
+      "mantissa_bits": 1,
+      "bias": 1,
+      "encoding": "S1E2M1_block32_e8m0_shared_scale",
+      "decoded_value_formula": "elem * 2^(scale_byte - 127); elem in {0, +-0.5, +-1, +-1.5, +-2, +-3, +-4, +-6}",
+      "status": "CROSS-VALIDATION, tt-metal kMxFp4Params parity",
+      "conformance_vectors": "mxfp4_conformance_v0.json",
+      "reference_impl": "tenstorrent/tt-metal/tt_metal/impl/data_format/mxfp4.cpp"
     }
   }
 }

@@ -59,10 +59,31 @@ Every call logs a deterministic provenance tag:
 ```bash
 tt-lang-t27-conform \
   --registry format-spec-001.json \
-  --vectors  gf16_conformance_v0.json \
-  --kernel   path/to/user_kernel.py::my_matmul
+  --vectors  gf16_conformance_v0.json
 # OK conform=true reasons=0 sha256=<hex>
+
+tt-lang-t27-mxfp4-conform \
+  --vectors  mxfp4_conformance_v0.json
+# OK mxfp4_conform=true reasons=0 sha256=<hex>
 ```
+
+## MXFP4 cross-validation (new in v0.2)
+
+`tt_lang_t27.mxfp4` is a pure-Python reference codec for OCP MXFP4
+(S1E2M1, block_size=32, E8M0 shared scale).  Constants pinned to
+[tt-metal `kMxFp4Params`](https://github.com/tenstorrent/tt-metal/blob/main/tt_metal/impl/data_format/mxfp4.cpp):
+
+- `block_size = 32`
+- `scale_bias = 0x7F` (E8M0 bias 127)
+- `elem_exp_bits = 2`, `elem_man_bits = 1`, `elem_exp_bias = 1`
+- saturation `sat_pos_bits = 0x7`, `sat_neg_bits = 0xF`
+- inf / nan: NotRepresentable
+
+The `vectors/mxfp4_conformance_v0.json` pack carries 12 32-element blocks
+with expected scale byte + 32 nibbles + packed bytes hex.  Any reference
+implementation (including tt-metal's `pack_as_mxfp4_tiles<float>`) can
+verify bit-exact parity by re-encoding each `input_f32` and comparing to
+`expected_bytes_hex`.
 
 ## Provenance tag formula
 

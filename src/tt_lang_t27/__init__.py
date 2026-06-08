@@ -6,9 +6,25 @@ Apache-2.0.  ASCII only.  No upstream tt-lang dependency.
 from .registry import Registry, FormatSpec, load_registry, load_vectors
 from .decorator import t27_kernel
 from .conformance import check_vectors, ConformanceReport
+from .conformance_mxfp4 import (
+    check_mxfp4_vectors,
+    load_mxfp4_pack,
+    MxfpConformanceReport,
+)
 from .gf16 import gf16_encode, gf16_decode, anchor_hash
+from .mxfp4 import (
+    encode_block,
+    decode_block,
+    pack_block_to_bytes,
+    unpack_bytes_to_block,
+    encode_tensor,
+    decode_tensor,
+    MxBlock,
+    BLOCK_SIZE,
+    SCALE_BIAS,
+)
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "Registry",
@@ -18,7 +34,19 @@ __all__ = [
     "t27_kernel",
     "check_vectors",
     "ConformanceReport",
+    "check_mxfp4_vectors",
+    "load_mxfp4_pack",
+    "MxfpConformanceReport",
     "gf16_encode",
     "gf16_decode",
     "anchor_hash",
+    "encode_block",
+    "decode_block",
+    "pack_block_to_bytes",
+    "unpack_bytes_to_block",
+    "encode_tensor",
+    "decode_tensor",
+    "MxBlock",
+    "BLOCK_SIZE",
+    "SCALE_BIAS",
 ]
