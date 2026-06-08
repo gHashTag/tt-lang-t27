@@ -16,6 +16,12 @@ on:
     branches: [main]
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Tag or ref to publish (for manual re-runs)"
+        required: false
+        default: "v0.2.0"
 
 jobs:
   build:
