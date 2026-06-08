@@ -5,6 +5,71 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-06-08
+
+Full 83-format SSOT catalog from `gHashTag/t27` shipped inside the wheel.
+
+### Added
+
+- `tt_lang_t27.catalog` -- access to the full 83-format catalog from
+  `gHashTag/t27/specs/numeric/formats_catalog.t27` (13 clusters,
+  CI-enforced upstream).
+- `Format` -- frozen dataclass with all 15 catalog fields plus typed
+  accessors (`bits_int`, `s_int`, `e_int`, `m_int`, `bias_int`,
+  `phi_distance_float`, `phi_distance_defined`).
+- `CATALOG` -- tuple of all 83 `Format` objects in catalog order.
+- Lookups: `by_id`, `find`, `by_cluster`, `by_status`, `clusters`,
+  `statuses`, `count`, `as_dict`, `ssot_source`.
+- Anchors: `ANCHOR = "phi^2 + 1/phi^2 = 3 = L_2"`, `ARXIV = "arXiv:2606.05017"`,
+  `SSOT_URL` pointing at the upstream catalog file.
+- `vectors/all_formats_v0.json` and shipped resource
+  `tt_lang_t27/data/all_formats_v0.json` (SHA-256 canonical:
+  `65c33c4b20318622dcd1538175c83dd4cfdf37341d78f926135ec0367a195b82`).
+- `tt_lang_t27.cli_catalog` -- `tt-lang-t27-catalog` CLI entry
+  (`--count`, `--list`, `--cluster`, `--status`, `--show`, `--clusters`,
+  `--statuses`, `--json`, `--anchor`).
+- 13 new tests, 40 total, all green on Python 3.10 / 3.11 / 3.12.
+
+### Cluster summary (CI-enforced upstream)
+
+```
+Ieee754Binary       5  (binary16, 32, 64, 128, 256)
+Ieee754Decimal      3  (decimal32, 64, 128)
+ExtendedFloat       3  (x87_fp80, double-double, quad-double)
+MlLowPrecision      7  (bfloat16, tf32, fp8 E4M3 / E5M2, fp6 / fp4)
+Microscaling        3  (mxfp8, mxfp6, mxfp4)
+QuantTuned          2  (nf4, afp)
+PositUnumIII        8  (posit8/16/32/64, takum8/16/32/64)
+Lns                 4  (lns8, 16, 32, 64)
+GoldenFloat        22  (GFTernary, GF4..GF1024 + hybrids)
+IntegerFixed        8  (int4..int128, q_format, bcd)
+HistoricalVendor   10  (IBM HFP, VAX, Cray, x87, MS MBF, PDP-11...)
+Theoretical         4  (minifloat, unum I/II, tapered)
+CompressionTrick    4  (block_fp, shared_exp, per_channel, stoch_rnd)
+----                 -
+TOTAL              83
+```
+
+### Status labels (canonical)
+
+`Verified`, `EmpiricalFit`, `Open`, `Risk`, `Retracted`, `Experimental`,
+`Historical` -- mirrored from the upstream catalog header.
+
+### Notes
+
+- Catalog data is shipped as resource, not regenerated at install: the
+  same SHA-256 is checked into both `vectors/` (repo-facing) and
+  `src/tt_lang_t27/data/` (wheel-facing).
+- Per-format codec implementations remain available only for `gf16` and
+  `mxfp4` in this release; the catalog otherwise carries metadata only
+  (bit layout, bias, cluster, status, standard, use case, gf_relation,
+  source).  Codec implementations for additional formats will land in
+  follow-up releases.
+- Anchor `phi^2 + 1/phi^2 = 3` is exact in IEEE-754 double; reference
+  arXiv:2606.05017.
+
+[0.3.0]: https://github.com/gHashTag/tt-lang-t27/releases/tag/v0.3.0
+
 ## [0.2.0] - 2026-06-08
 
 MXFP4 cross-validation against tt-metal `kMxFp4Params`.

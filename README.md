@@ -4,8 +4,16 @@
 [![arXiv:2606.05017](https://img.shields.io/badge/arXiv-2606.05017-b31b1b.svg)](https://arxiv.org/abs/2606.05017)
 
 Open numeric-format SSOT bridge from [gHashTag/t27](https://github.com/gHashTag/t27)
-(GoldenFloat family, Apache-2.0, Tiny Tapeout silicon) into
+(83-format catalog, GoldenFloat family, Apache-2.0, Tiny Tapeout silicon) into
 [tenstorrent/tt-lang](https://github.com/tenstorrent/tt-lang) kernel author workflows.
+
+**v0.3.0 ships the full 83-format catalog** from `gHashTag/t27` directly
+inside the wheel.  `import tt_lang_t27` now exposes every IEEE 754 binary +
+decimal float, every fp8 / fp6 / fp4, every microscaling format, every posit /
+takum, every lns, every GF ladder rung, every historical vendor float (IBM
+HFP, VAX, Cray, x87, MS MBF, ...), and every theoretical / compression format,
+with bit layout + bias + cluster + status (`Verified` / `Open` / ... ) + standard
++ use case + GF relation -- all in one frozen dataclass per format.
 
 ## What this is
 
@@ -66,6 +74,42 @@ tt-lang-t27-mxfp4-conform \
   --vectors  mxfp4_conformance_v0.json
 # OK mxfp4_conform=true reasons=0 sha256=<hex>
 ```
+
+## 83-format catalog (new in v0.3)
+
+The full catalog is loaded once from a JSON resource shipped inside the
+wheel.  No network calls, no file paths to manage.
+
+```python
+import tt_lang_t27 as t27
+
+t27.catalog_count()                # 83
+t27.clusters()                     # ['Ieee754Binary', 'Ieee754Decimal', ...]
+t27.by_id("bfloat16").e_int        # 8
+t27.by_id("bfloat16").bias_int     # 127
+len(t27.by_cluster("GoldenFloat")) # 22
+len(t27.by_status("Verified"))     # >= 20
+t27.ANCHOR                         # 'phi^2 + 1/phi^2 = 3 = L_2'
+t27.ARXIV                          # 'arXiv:2606.05017'
+```
+
+From the command line:
+
+```bash
+tt-lang-t27-catalog --count                     # 83
+tt-lang-t27-catalog --clusters                  # 13 cluster names
+tt-lang-t27-catalog --cluster GoldenFloat       # 22 GF rungs
+tt-lang-t27-catalog --status Verified           # all Verified formats
+tt-lang-t27-catalog --show bfloat16             # full record for bfloat16
+tt-lang-t27-catalog --json > catalog.json       # full JSON dump
+```
+
+Each record carries: `id`, `name`, `bits`, `s`, `e`, `m`, `bias`,
+`phi_distance` (signed, `-1.0` = undefined sentinel), `storage`, `cluster`,
+`status`, `standard`, `use_case`, `gf_relation`, `source`.
+
+Canonical source of truth (upstream `gHashTag/t27`):
+[`specs/numeric/formats_catalog.t27`](https://github.com/gHashTag/t27/blob/master/specs/numeric/formats_catalog.t27).
 
 ## MXFP4 cross-validation (new in v0.2)
 
