@@ -4,10 +4,10 @@
 [![arXiv:2606.05017](https://img.shields.io/badge/arXiv-2606.05017-b31b1b.svg)](https://arxiv.org/abs/2606.05017)
 
 Open numeric-format SSOT bridge from [gHashTag/t27](https://github.com/gHashTag/t27)
-(83-format catalog, GoldenFloat family, Apache-2.0, Tiny Tapeout silicon) into
+(numeric format catalog, GoldenFloat family, Apache-2.0) into
 [tenstorrent/tt-lang](https://github.com/tenstorrent/tt-lang) kernel author workflows.
 
-**v0.3.0 ships the full 83-format catalog** from `gHashTag/t27` directly
+**v0.3.0 ships the full catalog (83 formats at the time; the live SSOT in `gHashTag/t27` now carries 109)** from `gHashTag/t27` directly
 inside the wheel.  `import tt_lang_t27` now exposes every IEEE 754 binary +
 decimal float, every fp8 / fp6 / fp4, every microscaling format, every posit /
 takum, every lns, every GF ladder rung, every historical vendor float (IBM
@@ -75,7 +75,7 @@ tt-lang-t27-mxfp4-conform \
 # OK mxfp4_conform=true reasons=0 sha256=<hex>
 ```
 
-## 83-format catalog (new in v0.3)
+## The format catalog (new in v0.3; 83 records at v0.3.0, 109 in the live SSOT)
 
 The full catalog is loaded once from a JSON resource shipped inside the
 wheel.  No network calls, no file paths to manage.
