@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "tt-lang-t27"
 version = "0.4.0"
-description = "Open Apache-2.0 numeric-format SSOT bridge: 83-format catalog from t27 (GF + MXFP4 + IEEE + posit + takum + lns + ...) for tt-lang kernels."
+description = "Open Apache-2.0 numeric-format SSOT bridge: numeric-format catalog from t27 (109 formats at arXiv:2606.09686 v3, Sep 2026; the count is a live invariant) (GF + MXFP4 + IEEE + posit + takum + lns + ...) for tt-lang kernels."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
